@@ -1,0 +1,72 @@
+hoangtm@DESKTOP-HOANG:~/.ssh$ ssh -i "ec2-keypair.pem" ec2-user@ec2-54-167-201-67.compute-1.amazonaws.com
+The authenticity of host 'ec2-54-167-201-67.compute-1.amazonaws.com (54.167.201.67)' can't be established.
+ED25519 key fingerprint is SHA256:9BWeweJhsLy+QSkLYW/K+52UJYEciZg20+DQAVE3z40.
+This host key is known by the following other names/addresses:
+    ~/.ssh/known_hosts:3: [hashed name]
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added 'ec2-54-167-201-67.compute-1.amazonaws.com' (ED25519) to the list of known hosts.
+   ,     #_
+   ~\_  ####_        Amazon Linux 2023
+  ~~  \_#####\
+  ~~     \###|
+  ~~       \#/ ___   https://aws.amazon.com/linux/amazon-linux-2023
+   ~~       V~' '->
+    ~~~         /
+      ~~._.   _/
+         _/ _/
+       _/m/'
+Last login: Mon Feb  5 08:40:45 2024 from 104.28.237.70
+[ec2-user@ip-10-1-10-210 ~]$ mysql
+ERROR 2002 (HY000): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2)
+[ec2-user@ip-10-1-10-210 ~]$ mysql -h rds-primary.clrjhrrjum3x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.210' (using password: YES)
+[ec2-user@ip-10-1-10-210 ~]$ mysql -h rds-primary.clrjhrrjum3x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+ERROR 1045 (28000): Access denied for user 'admin'@'10.1.10.210' (using password: YES)
+[ec2-user@ip-10-1-10-210 ~]$ mysql -h rds-primary.clrjhrrjum3x.us-east-1.rds.amazonaws.com -P 3306 -u admin -p
+Enter password:
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 345
+Server version: 8.0.35 Source distribution
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> use udacity
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [udacity]> create table pett(id int primary key, name varchar(10), type varchar(10));
+Query OK, 0 rows affected (0.081 sec)
+
+MySQL [udacity]> select * from pett;
+Empty set (0.002 sec)
+
+MySQL [udacity]> insert into pett (id, name, type) values (1, "Mike", "Dog");
+Query OK, 1 row affected (0.010 sec)
+
+MySQL [udacity]> insert into pett (id, name, type) values (1, "Tom", "Cat");
+ERROR 1062 (23000): Duplicate entry '1' for key 'pett.PRIMARY'
+MySQL [udacity]> insert into pett (id, name, type) values (2, "Tom", "Cat");
+Query OK, 1 row affected (0.013 sec)
+
+MySQL [udacity]> select * from pett;
++----+------+------+
+| id | name | type |
++----+------+------+
+|  1 | Mike | Dog  |
+|  2 | Tom  | Cat  |
++----+------+------+
+2 rows in set (0.001 sec)
+
+MySQL [udacity]> select * from uda;
++----+------+------+
+| id | name | age  |
++----+------+------+
+|  1 | Hi   |   18 |
+|  2 | Big  |   62 |
++----+------+------+
+2 rows in set (0.001 sec)
