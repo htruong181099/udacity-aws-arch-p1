@@ -1,0 +1,12 @@
+The Recovery Time Objective (RTO) is the maximum acceptable downtime for a system or service after a disruption
+RPO, or Recovery Point Objective, is a crucial metric in business continuity and disaster recovery planning. It defines the maximum acceptable amount of data loss that an organization is willing to tolerate in the event of a disruption or disaster.
+
+1. Minimum RTO for a single AZ outage
+The minimum RTO for a single Availability Zone (AZ) outage in AWS depends on various factors. If standby instance is already running in different AZ then it should be a quick recovery within a matter of seconds to a few minutes.
+2. Minimum RTO for a single region outage
+For single region outage, the RTO might be slightly longer due to the need to redirect traffic to the standby database in another region. However, the RTO can still be maintained at a relatively low level, in the range of a few minutes if with efficient global traffic management and automated failover mechanisms. 
+3. Minimum RPO for a single AZ outage
+Regarding the Recovery Point Objective (RPO), in the scenario of a single AZ outage, the minimum is often close to zero. This ensures minimal data loss, with the standby database staying up-to-date.
+4. Minimum RPO for a single region outage
+For a single region outage, the minimum RPO may be slightly higher compared to a single AZ scenario as asynchronous replication between regions introduces a minor delay.
+It could have a minimum of 15 minutes RPO for single region outage.
